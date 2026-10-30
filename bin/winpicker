@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Romuald Rugoletto
+# Usage: winpicker [emoji|kaomoji|symbols|clipboard|daemon|quit]
+#
+# Called by the keyboard shortcuts. If the daemon is running, talk to it directly
+# over D-Bus (instant); otherwise start it and ask it to show the tab.
+ROOT="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
+APP_ID=io.github.RomualdRugoletto.WinPicker  # must match APP_ID in winpicker/app.py
+OBJECT_PATH=/io/github/RomualdRugoletto/WinPicker
+run() { cd "$ROOT" && exec python3 -m winpicker "$@"; }
+
+case "${1:-emoji}" in
+  daemon) run ;;
+  quit) gdbus call --session --dest $APP_ID --object-path $OBJECT_PATH \
+          --method org.gtk.Actions.Activate quit "[]" "{}" >/dev/null 2>&1 ;;
+  *)
+    gdbus call --session --dest $APP_ID --object-path $OBJECT_PATH \
+      --method org.gtk.Actions.Activate show "[<'${1:-emoji}'>]" "{}" >/dev/null 2>&1 \
+      || run --show "${1:-emoji}" ;;
+esac

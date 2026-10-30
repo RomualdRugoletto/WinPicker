@@ -1,0 +1,191 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the WinPicker package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WinPicker\n"
+"Report-Msgid-Bugs-To: https://github.com/RomualdRugoletto/WinPicker/issues\n"
+"POT-Creation-Date: 2026-10-30 10:06+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: winpicker/app.py:31
+msgid "Tab to show:"
+msgstr ""
+
+#: winpicker/app.py:31
+msgid "TAB"
+msgstr ""
+
+#: winpicker/app.py:33
+msgid "Stop the daemon"
+msgstr ""
+
+#: winpicker/app.py:94
+#, python-brace-format
+msgid "Unknown tab: {tab}"
+msgstr ""
+
+#: winpicker/emoji_data.py:19
+msgid "Smileys & emotion"
+msgstr ""
+
+#: winpicker/emoji_data.py:20
+msgid "People & body"
+msgstr ""
+
+#: winpicker/emoji_data.py:21
+msgid "Animals & nature"
+msgstr ""
+
+#: winpicker/emoji_data.py:22
+msgid "Food & drink"
+msgstr ""
+
+#: winpicker/emoji_data.py:23
+msgid "Travel & places"
+msgstr ""
+
+#: winpicker/emoji_data.py:24
+msgid "Activities"
+msgstr ""
+
+#: winpicker/emoji_data.py:25
+msgid "Objects"
+msgstr ""
+
+#: winpicker/emoji_data.py:26 winpicker/window.py:16
+msgid "Symbols"
+msgstr ""
+
+#: winpicker/emoji_data.py:27
+msgid "Flags"
+msgstr ""
+
+#: winpicker/symbols.py:9
+msgid "Happy"
+msgstr ""
+
+#: winpicker/symbols.py:10
+msgid "Love"
+msgstr ""
+
+#: winpicker/symbols.py:11
+msgid "Sad"
+msgstr ""
+
+#: winpicker/symbols.py:12
+msgid "Angry"
+msgstr ""
+
+#: winpicker/symbols.py:13
+msgid "Misc"
+msgstr ""
+
+#: winpicker/symbols.py:17
+msgid "Punctuation"
+msgstr ""
+
+#: winpicker/symbols.py:18
+msgid "Accented letters"
+msgstr ""
+
+#: winpicker/symbols.py:19
+msgid "Currencies"
+msgstr ""
+
+#: winpicker/symbols.py:20
+msgid "Math"
+msgstr ""
+
+#: winpicker/symbols.py:21
+msgid "Superscripts and subscripts"
+msgstr ""
+
+#: winpicker/symbols.py:22
+msgid "Arrows"
+msgstr ""
+
+#: winpicker/symbols.py:23
+msgid "Greek"
+msgstr ""
+
+#: winpicker/symbols.py:24
+msgid "Shapes and misc"
+msgstr ""
+
+#: winpicker/tabs.py:59
+msgid "Recently used"
+msgstr ""
+
+#: winpicker/tabs.py:67
+msgid "No results"
+msgstr ""
+
+#: winpicker/tabs.py:117
+msgid "Skin tone"
+msgstr ""
+
+#: winpicker/tabs.py:216 winpicker/window.py:17
+msgid "Clipboard history"
+msgstr ""
+
+#: winpicker/tabs.py:218
+msgid "Clear all"
+msgstr ""
+
+#: winpicker/tabs.py:219
+msgid "Removes everything except pinned items"
+msgstr ""
+
+#: winpicker/tabs.py:233
+msgid ""
+"Nothing here yet.\n"
+"\n"
+"Copy some text or an image\n"
+"and it will show up here."
+msgstr ""
+
+#: winpicker/tabs.py:273
+msgid "Unpin"
+msgstr ""
+
+#: winpicker/tabs.py:273
+msgid "Pin"
+msgstr ""
+
+#: winpicker/tabs.py:278
+msgid "Delete (Del)"
+msgstr ""
+
+#: winpicker/window.py:14
+msgid "Emoji"
+msgstr ""
+
+#: winpicker/window.py:14
+msgid "Search emoji"
+msgstr ""
+
+#: winpicker/window.py:15
+msgid "Kaomoji"
+msgstr ""
+
+#: winpicker/window.py:15
+msgid "Search kaomoji"
+msgstr ""
+
+#: winpicker/window.py:16
+msgid "Search symbols"
+msgstr ""
+
+#: winpicker/window.py:17
+msgid "Search clipboard history"
+msgstr ""

@@ -1,0 +1,4 @@
+__pycache__/
+*.py[cod]
+# Compiled translations, built from po/*.po by po/compile.sh
+/locale/
