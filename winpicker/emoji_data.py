@@ -10,7 +10,7 @@ import gi
 gi.require_version("IBus", "1.0")
 from gi.repository import IBus  # noqa: E402
 
-from .i18n import _, system_languages  # noqa: E402
+from .i18n import _, interface_language  # noqa: E402
 
 DICT_DIR = Path("/usr/share/ibus/dicts")
 
@@ -60,8 +60,10 @@ def _load(lang: str):
 
 
 def load_emojis() -> list[Emoji]:
-    """Emoji named in the first system language that has an IBus dictionary (English otherwise)."""
-    lang = next((lang for lang in system_languages() if (DICT_DIR / f"emoji-{lang}.dict").exists()), "en")
+    """Emoji named in the interface language (English if IBus has no dictionary for it)."""
+    lang = interface_language()
+    if not (DICT_DIR / f"emoji-{lang}.dict").exists():
+        lang = "en"
     english = {e.get_emoji().replace(VS16, ""): e for e in _load("en")}
     by_key: dict[str, Emoji] = {}
     variants: list[tuple[str, str, str]] = []  # (base key, tone, emoji)

@@ -48,8 +48,10 @@ for its own emoji picker, its shortcut is disabled (and restored by `uninstall.s
 
 ## Usage
 
-- Just type to search. Emoji match names in your language and in English, accents optional
-  (`eclair`, `coeur`, `thumbs up`).
+- Just type to search. Emoji match their names in the interface language, accents optional
+  (`thumbs up`, `heart`); symbols match their Unicode name and category (`arrow`, `greek alpha`).
+- Symbols tab: characters that also exist as emoji (marked with a dot) are inserted with the
+  text presentation selector U+FE0E, so they stay plain text in the target application.
 - `Enter` inserts the first result. `↓` then the arrow keys to navigate, `Enter`/`Space` to insert.
 - `Ctrl+Tab` / `Ctrl+Shift+Tab`: next / previous tab.
 - Clipboard history: `Delete` removes the selected item; the pin icon keeps an item.
@@ -87,7 +89,8 @@ To run it from the source tree without installing: `bin/winpicker daemon`, then 
 
 ## Translating
 
-The interface follows the system language (`LANGUAGE` / `LANG`); English is the fallback.
+The interface follows the system language (`LANGUAGE` / `LANG`) when a translation exists, English
+otherwise. Emoji search uses the same language as the interface.
 
 ```bash
 po/update.sh                                   # refresh po/winpicker.pot and existing po/*.po

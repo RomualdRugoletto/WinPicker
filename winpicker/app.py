@@ -63,14 +63,18 @@ class WinPicker(Gtk.Application):
             if items:
                 emoji_sections.append((label, items))
 
-        def grid(sections):
-            return [(title, [GridItem(text, search) for text, search in items]) for title, items in sections]
+        def grid(sections):  # items: (text, search keywords[, tooltip])
+            return [(title, [GridItem(*item) for item in items], *rest) for title, items, *rest in sections]
+
+        emoji_chars = {e.char.replace(emoji_data.VS16, "") for e in emojis}
+        self.state.map_recent("symbols", lambda text: symbols.as_text(text, emoji_chars))
 
         common = {"on_pick": self.pick_text, "clear_search": self._clear_search, "state": self.state}
         return {
             "emoji": GridTab("emoji", emoji_sections, per_line=8, css_class="emoji", nav=True, tones=True, **common),
             "kaomoji": GridTab("kaomoji", grid(symbols.kaomoji_sections()), per_line=2, css_class="kaomoji", **common),
-            "symbols": GridTab("symbols", grid(symbols.symbol_sections()), per_line=8, css_class="symbol", **common),
+            "symbols": GridTab("symbols", grid(symbols.symbol_sections(emoji_chars)), per_line=8, css_class="symbol",
+                               nav=True, note=symbols.TEXT_NOTE, **common),
             "clipboard": ClipboardTab(self.history, on_pick=self.pick_clip),
         }
 

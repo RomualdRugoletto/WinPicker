@@ -9,6 +9,7 @@ from gi.repository import Gdk, GdkPixbuf, GLib, Gtk, Pango
 
 from .emoji_data import SKIN_TONES, normalize
 from .i18n import _
+from .symbols import VS15
 
 
 def _matches(query: str, haystack: str) -> bool:
@@ -44,7 +45,8 @@ class GridItem:
 class GridTab(Gtk.Box):
     """Sectioned grid, with a "recently used" section and an optional navigation bar."""
 
-    def __init__(self, tab_id, sections, *, per_line, css_class, on_pick, clear_search, state, nav=False, tones=False):
+    def __init__(self, tab_id, sections, *, per_line, css_class, on_pick, clear_search, state,
+                 nav=False, tones=False, note=None):
         super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=4)
         self.tab_id, self.on_pick, self.clear_search, self.state = tab_id, on_pick, clear_search, state
         self.per_line = per_line
@@ -56,13 +58,30 @@ class GridTab(Gtk.Box):
         self.scroller.add(self.content)
         self.pack_start(self.scroller, True, True, 0)
 
+        if note:  # legend of the corner mark, see _add_child
+            self.note = Gtk.Box()
+            self.note.get_style_context().add_class("tab-note")
+            mark = Gtk.Label(label="•", valign=Gtk.Align.START)
+            mark.get_style_context().add_class("text-mark")
+            self.note.pack_start(mark, False, False, 0)
+            self.note.pack_start(Gtk.Label(label=note, xalign=0, wrap=True), True, True, 0)
+            self.content.pack_start(self.note, False, False, 0)
+        else:
+            self.note = None
+
         self.recent_header, self.recent_box = self._add_section(_("Recently used"))
         self.sections = []  # (header, flowbox, items)
-        for title, items in sections:
+        self.nav_icons = []
+        self.by_text = {}  # inserted text -> item, to give recently used items their tooltip
+        for title, items, *icon in sections:  # optional 3rd element: navigation bar icon
             header, box = self._add_section(title)
             for item in items:
                 self._add_child(box, item)
+                self.by_text[item.text] = item
+                for variant in item.emoji.tones.values() if item.emoji else ():
+                    self.by_text.setdefault(variant, item)
             self.sections.append((header, box, items))
+            self.nav_icons.append(icon[0] if icon else items[0].text)
 
         self.no_result = Gtk.Label(label=_("No results"), margin=24)
         self.no_result.get_style_context().add_class("dim-label")
@@ -93,7 +112,16 @@ class GridTab(Gtk.Box):
     def _add_child(self, box, item: GridItem):
         child = Gtk.FlowBoxChild()
         child.item = item
-        child.add(Gtk.Label(label=item.display(self.state.tone)))
+        label = Gtk.Label(label=item.display(self.state.tone))
+        if item.text.endswith(VS15):  # forced text presentation: corner mark
+            overlay = Gtk.Overlay()
+            overlay.add(label)
+            mark = Gtk.Label(label="•", halign=Gtk.Align.END, valign=Gtk.Align.START)
+            mark.get_style_context().add_class("text-mark")
+            overlay.add_overlay(mark)
+            child.add(overlay)
+        else:
+            child.add(label)
         if item.tooltip:
             child.set_tooltip_text(item.tooltip)
         box.add(child)
@@ -103,8 +131,8 @@ class GridTab(Gtk.Box):
         bar = Gtk.Box(spacing=2)
         bar.get_style_context().add_class("navbar")
         if nav:
-            for header, _box, items in self.sections:
-                button = Gtk.Button(label=items[0].text, relief=Gtk.ReliefStyle.NONE, can_focus=False)
+            for (header, _box, _items), icon in zip(self.sections, self.nav_icons):
+                button = Gtk.Button(label=icon, relief=Gtk.ReliefStyle.NONE, can_focus=False)
                 button.set_tooltip_text(header.get_label())
                 button.connect("clicked", lambda _b, h=header: self._jump_to(h))
                 bar.pack_start(button, True, True, 0)
@@ -154,7 +182,8 @@ class GridTab(Gtk.Box):
             child.destroy()
         recent = self.state.recent(self.tab_id)
         for text in recent:
-            self._add_child(self.recent_box, GridItem(text))
+            known = self.by_text.get(text)
+            self._add_child(self.recent_box, GridItem(text, tooltip=known.tooltip if known else None))
         self.recent_box.show_all()
         self._update_visibility()
         self.scroller.get_vadjustment().set_value(0)
@@ -171,6 +200,8 @@ class GridTab(Gtk.Box):
 
     def _update_visibility(self):
         show_recent = not self.query and bool(self.state.recent(self.tab_id))
+        if self.note:
+            self.note.set_visible(not self.query)
         self.recent_header.set_visible(show_recent)
         self.recent_box.set_visible(show_recent)
         any_visible = show_recent

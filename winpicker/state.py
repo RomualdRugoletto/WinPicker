@@ -21,6 +21,14 @@ class UserState:
     def recent(self, tab: str) -> list[str]:
         return self._recent.get(tab, [])
 
+    def map_recent(self, tab: str, convert):
+        """Rewrites the recently used items of a tab, e.g. after a change in how they are inserted."""
+        if tab in self._recent:
+            converted = list(dict.fromkeys(convert(t) for t in self._recent[tab]))
+            if converted != self._recent[tab]:
+                self._recent[tab] = converted
+                self._save()
+
     def add_recent(self, tab: str, text: str):
         self._recent[tab] = ([text] + [t for t in self.recent(tab) if t != text])[:MAX_RECENT]
         self._save()

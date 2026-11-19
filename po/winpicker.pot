@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinPicker\n"
 "Report-Msgid-Bugs-To: https://github.com/RomualdRugoletto/WinPicker/issues\n"
-"POT-Creation-Date: 2026-10-30 10:06+0100\n"
+"POT-Creation-Date: 2026-11-19 10:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Stop the daemon"
 msgstr ""
 
-#: winpicker/app.py:94
+#: winpicker/app.py:97
 #, python-brace-format
 msgid "Unknown tab: {tab}"
 msgstr ""
@@ -71,82 +71,114 @@ msgid "Flags"
 msgstr ""
 
 #: winpicker/symbols.py:9
-msgid "Happy"
-msgstr ""
-
-#: winpicker/symbols.py:10
-msgid "Love"
-msgstr ""
-
-#: winpicker/symbols.py:11
-msgid "Sad"
+msgid "Inserted as plain text, never as a color emoji (adds U+FE0E)"
 msgstr ""
 
 #: winpicker/symbols.py:12
-msgid "Angry"
+msgid "Happy"
 msgstr ""
 
 #: winpicker/symbols.py:13
+msgid "Love"
+msgstr ""
+
+#: winpicker/symbols.py:14
+msgid "Sad"
+msgstr ""
+
+#: winpicker/symbols.py:15
+msgid "Angry"
+msgstr ""
+
+#: winpicker/symbols.py:16
 msgid "Misc"
 msgstr ""
 
-#: winpicker/symbols.py:17
+#: winpicker/symbols.py:21
 msgid "Punctuation"
 msgstr ""
 
-#: winpicker/symbols.py:18
+#: winpicker/symbols.py:22
 msgid "Accented letters"
 msgstr ""
 
-#: winpicker/symbols.py:19
+#: winpicker/symbols.py:27
 msgid "Currencies"
 msgstr ""
 
-#: winpicker/symbols.py:20
+#: winpicker/symbols.py:28
 msgid "Math"
 msgstr ""
 
-#: winpicker/symbols.py:21
+#: winpicker/symbols.py:32
+msgid "Fractions and numbers"
+msgstr ""
+
+#: winpicker/symbols.py:36
 msgid "Superscripts and subscripts"
 msgstr ""
 
-#: winpicker/symbols.py:22
+#: winpicker/symbols.py:40
 msgid "Arrows"
 msgstr ""
 
-#: winpicker/symbols.py:23
+#: winpicker/symbols.py:44
 msgid "Greek"
 msgstr ""
 
-#: winpicker/symbols.py:24
-msgid "Shapes and misc"
+#: winpicker/symbols.py:47
+msgid "Geometric shapes"
 msgstr ""
 
-#: winpicker/tabs.py:59
+#: winpicker/symbols.py:50
+msgid "Checkmarks, stars and dingbats"
+msgstr ""
+
+#: winpicker/symbols.py:53
+msgid "Box drawing"
+msgstr ""
+
+#: winpicker/symbols.py:56
+msgid "Technical and keyboard"
+msgstr ""
+
+#: winpicker/symbols.py:59
+msgid "Units and letterlike"
+msgstr ""
+
+#: winpicker/symbols.py:62
+msgid "Miscellaneous"
+msgstr ""
+
+#: winpicker/symbols.py:65
+msgid "Games and music"
+msgstr ""
+
+#: winpicker/tabs.py:72
 msgid "Recently used"
 msgstr ""
 
-#: winpicker/tabs.py:67
+#: winpicker/tabs.py:82
 msgid "No results"
 msgstr ""
 
-#: winpicker/tabs.py:117
+#: winpicker/tabs.py:141
 msgid "Skin tone"
 msgstr ""
 
-#: winpicker/tabs.py:216 winpicker/window.py:17
+#: winpicker/tabs.py:242 winpicker/window.py:17
 msgid "Clipboard history"
 msgstr ""
 
-#: winpicker/tabs.py:218
+#: winpicker/tabs.py:244
 msgid "Clear all"
 msgstr ""
 
-#: winpicker/tabs.py:219
+#: winpicker/tabs.py:245
 msgid "Removes everything except pinned items"
 msgstr ""
 
-#: winpicker/tabs.py:233
+#: winpicker/tabs.py:259
 msgid ""
 "Nothing here yet.\n"
 "\n"
@@ -154,15 +186,15 @@ msgid ""
 "and it will show up here."
 msgstr ""
 
-#: winpicker/tabs.py:273
+#: winpicker/tabs.py:299
 msgid "Unpin"
 msgstr ""
 
-#: winpicker/tabs.py:273
+#: winpicker/tabs.py:299
 msgid "Pin"
 msgstr ""
 
-#: winpicker/tabs.py:278
+#: winpicker/tabs.py:304
 msgid "Delete (Del)"
 msgstr ""
 

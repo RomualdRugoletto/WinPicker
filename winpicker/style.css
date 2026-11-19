@@ -51,13 +51,29 @@ window.winpicker {
 }
 
 .winpicker .emoji flowboxchild label,
-.winpicker .navbar button label {
+.winpicker .emoji .navbar button label {
   font-family: "Noto Color Emoji", sans-serif;
 }
 
 .winpicker .emoji flowboxchild label { font-size: 22px; }
 .winpicker .symbol flowboxchild label { font-size: 18px; }
 .winpicker .kaomoji flowboxchild { padding: 8px 4px; }
+
+/* Symbols inserted with U+FE0E (text presentation) */
+.winpicker .text-mark {
+  font-size: 9px;
+  color: @theme_selected_bg_color;
+  margin: 0 6px;
+}
+
+.winpicker .tab-note {
+  margin: 2px 0 0;
+}
+
+.winpicker .tab-note > label:last-child {
+  font-size: 10px;
+  opacity: 0.6;
+}
 
 .winpicker .navbar {
   border-top: 1px solid alpha(@theme_fg_color, 0.1);

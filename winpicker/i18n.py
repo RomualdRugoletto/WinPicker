@@ -31,3 +31,12 @@ def system_languages() -> list[str]:
             if candidate not in languages:
                 languages.append(candidate)
     return languages
+
+
+def interface_language() -> str:
+    """Language the interface is actually shown in: the first system language that has a
+    compiled catalog, English otherwise. Emoji names follow it, so search matches the interface."""
+    for lang in system_languages():
+        if lang == "en" or (LOCALE_DIR / lang / "LC_MESSAGES" / f"{DOMAIN}.mo").exists():
+            return lang
+    return "en"
